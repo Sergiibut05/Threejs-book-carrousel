@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:wght@700&family=Cormorant+Garamond:wght@600&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body
+{
+    overflow: hidden;
+}
+
+.main-title {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    z-index: 100;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        top: 20px;
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        letter-spacing: 1px;
+    }
+}
+#bottom-gradient {
+    background: linear-gradient(to top, #FCF5E2 0%, transparent 100%);
+}
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.carousel-arrow
+{
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.carousel-arrow:hover
+{
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow:active
+{
+    transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-arrow-left
+{
+    left: 20px;
+}
+
+.carousel-arrow-right
+{
+    right: 20px;
+}
