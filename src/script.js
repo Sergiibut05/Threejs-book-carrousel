@@ -36,14 +36,37 @@ const bookBackgroundColors = [
     0xFFF5E5  
 ]
 
-// URLs para cada libro
-const bookUrls = [
-    'https://example.com/book1',
-    'https://example.com/book2',
-    'https://example.com/book3',
-    'https://example.com/book4',
-    'https://example.com/book5'
+// Datos de cada libro (título, autor, URL)
+const booksData = [
+    {
+        title: "A Winter's Embrace",
+        author: "Deen Peer",
+        url: 'https://example.com/book1'
+    },
+    {
+        title: "The Frightened Phantom",
+        author: "Dan Lockes",
+        url: 'https://example.com/book2'
+    },
+    {
+        title: "The Journey of a Solo Backpacker",
+        author: "",
+        url: 'https://example.com/book3'
+    },
+    {
+        title: "Barnaby the Bear's Big Circus Dream",
+        author: "Peter Dandy",
+        url: 'https://example.com/book4'
+    },
+    {
+        title: "Autumn's Little Joy",
+        author: "Diana Simmons",
+        url: 'https://example.com/book5'
+    }
 ]
+
+// URLs para cada libro (mantener para compatibilidad)
+const bookUrls = booksData.map(book => book.url)
 
 
 // Textures
@@ -102,7 +125,7 @@ gltfLoader.load('./book.glb', (gltf) => {
                 bookMesh.userData.indexOffset = i - 2
                 bookMesh.userData.baseX = bookMesh.userData.indexOffset * carouselConfig.bookSpacing
                 bookMesh.userData.bookIndex = i 
-                bookMesh.userData.url = bookUrls[i] 
+                bookMesh.userData.url = booksData[i].url 
                 
                 // Posición inicial (se actualizará en tick)
                 bookMesh.position.x = bookMesh.userData.baseX
@@ -440,10 +463,35 @@ const tick = () =>
         )
     })
 
-    // Cambiar el color de fondo según el libro en el centro
+    // Cambiar el color de fondo, texto y botón según el libro en el centro
     if(centerBookIndex !== null){
         const targetColor = new THREE.Color(bookBackgroundColors[centerBookIndex])
         scene.background.lerp(targetColor, 0.05)
+        
+        // Actualizar información del libro
+        const bookInfo = booksData[centerBookIndex]
+        const bookTitleEl = document.getElementById('book-title')
+        const bookAuthorEl = document.getElementById('book-author')
+        const bookInfoEl = document.querySelector('.book-info')
+        const discoverBtn = document.getElementById('discover-btn')
+        
+        if(bookTitleEl && bookAuthorEl && bookInfoEl && discoverBtn){
+            bookTitleEl.textContent = bookInfo.title
+            bookAuthorEl.textContent = bookInfo.author || ''
+            bookInfoEl.classList.add('visible')
+            discoverBtn.classList.add('visible')
+            
+            // Actualizar URL del botón
+            discoverBtn.onclick = () => {
+                window.location.href = bookInfo.url
+            }
+        }
+    } else {
+        // Ocultar información si no hay libro en el centro
+        const bookInfoEl = document.querySelector('.book-info')
+        const discoverBtn = document.getElementById('discover-btn')
+        if(bookInfoEl) bookInfoEl.classList.remove('visible')
+        if(discoverBtn) discoverBtn.classList.remove('visible')
     }
 
     mouse.x = cursor.x

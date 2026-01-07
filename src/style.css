@@ -85,3 +85,86 @@ body
 {
     right: 20px;
 }
+
+/* Book Info */
+.book-info {
+    position: fixed;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.book-info.visible {
+    opacity: 1;
+}
+
+.book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    letter-spacing: 1px;
+}
+
+.book-author {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    font-style: italic;
+}
+
+/* Discover Button */
+.discover-button {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 40px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.discover-button.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.discover-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateX(-50%) scale(1.05);
+}
+
+.discover-button:active {
+    transform: translateX(-50%) scale(0.98);
+}
+
+@media (max-width: 768px) {
+    .book-info {
+        bottom: 100px;
+    }
+    
+    .discover-button {
+        bottom: 30px;
+        padding: 12px 32px;
+    }
+}
