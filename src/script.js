@@ -50,7 +50,7 @@ const booksData = [
     },
     {
         title: "The Journey of a Solo Backpacker",
-        author: "",
+        author: "Anita Pest",
         url: 'https://example.com/book3'
     },
     {
